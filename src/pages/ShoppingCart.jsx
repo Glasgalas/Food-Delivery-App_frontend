@@ -2,14 +2,19 @@ import { useEffect } from 'react';
 import {
   Grid,
   GridItem,
-  Flex,
-  Spinner,
   Tooltip,
   Button,
   Link,
   Box,
   Text,
   useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTotals, clearCart } from '../redux/cartSlice';
@@ -27,7 +32,8 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addOrder, data] = useAddOrderMutation();
-  const { isSuccess } = data;
+  const { isSuccess, isError } = data;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const toast = useToast();
 
@@ -44,6 +50,10 @@ const ShoppingCart = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    onOpen();
+  }, [isError]);
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -113,16 +123,19 @@ const ShoppingCart = () => {
       }
 
       await addOrder(values);
-      handleClearCart();
-      handleResetForm();
-      toast({
-        title: 'Succes!',
-        description: 'The order has been sent to the queue.',
-        status: 'success',
-        duration: 4000,
-        position: 'bottom-right',
-        isClosable: true,
-      });
+
+      if (isSuccess) {
+        handleClearCart();
+        handleResetForm();
+        toast({
+          title: 'Succes!',
+          description: 'The order has been sent to the queue.',
+          status: 'success',
+          duration: 4000,
+          position: 'bottom-right',
+          isClosable: true,
+        });
+      }
     } catch (error) {
       console.error(error);
       toast({
@@ -239,6 +252,16 @@ const ShoppingCart = () => {
           </Button>
         </Tooltip>
       </GridItem>
+      {isError && (
+        <Modal isOpen={isOpen} onClose={() => onClose()}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Error {data.error.data.status}</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>{data.error.data.message}</ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
     </Grid>
   );
 };
