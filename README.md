@@ -1,6 +1,6 @@
 # Food-Delivery-App
 
-Food-Delivery-App is a simple-page-application, through which users can view
+Food-Delivery-App is a single-page-application, through which users can view
 available products and order food delivery.
 
 ## Installation
