@@ -1,13 +1,6 @@
-import {
-  Image,
-  Button,
-  Tooltip,
-  Text,
-  Grid,
-  GridItem,
-  Flex,
-} from '@chakra-ui/react';
+import { Text, Grid, GridItem, Flex } from '@chakra-ui/react';
 import HistoryProductItem from '../HistoryProductItem';
+import PropTypes from 'prop-types';
 
 const HistoryOrderItem = ({ order }) => {
   const { number, products, cartTotalAmount } = order;
@@ -48,4 +41,9 @@ const HistoryOrderItem = ({ order }) => {
     </Grid>
   );
 };
+
+HistoryOrderItem.propTypes = {
+  order: PropTypes.object.isRequired,
+};
+
 export default HistoryOrderItem;

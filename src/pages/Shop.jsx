@@ -1,9 +1,9 @@
-import React from 'react';
 import SideBar from '../components/SideBar';
+import Loader from '../components/Loader';
 import ProductList from '../components/ProductList';
 import { Outlet } from 'react-router-dom';
 import { useGetAllProductsQuery } from '../redux/productSlice';
-import { Grid, GridItem, Spinner, Flex, Text } from '@chakra-ui/react';
+import { Grid, GridItem, Flex } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
@@ -35,24 +35,16 @@ const useProducts = () => {
 
 const Shop = () => {
   const { filteredProducts, error, isLoading } = useProducts();
-  const cart = useSelector(state => state.cart);
 
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap="10">
       <GridItem colSpan={1}>
-        <SideBar inCart={cart.cartItems.length} />
+        <SideBar />
       </GridItem>
-
       {error && <p>Error! Oops...</p>}
       {isLoading ? (
         <Flex alignItems="center" justifyContent="center">
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
+          <Loader />
         </Flex>
       ) : (
         <GridItem colSpan={2}>

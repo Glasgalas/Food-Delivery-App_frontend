@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 const Map = () => {
   const cart = useSelector(state => state.cart);
   const form = useSelector(state => state.form);
-  const { email, address } = form;
+  const { address } = form;
   const { cartItems } = cart;
 
   const originOrder = cartItems[0]?.address ? cartItems[0].address : '';
@@ -15,7 +15,6 @@ const Map = () => {
       {address && cartItems[0] ? (
         <iframe
           width="100%"
-          // height="300px"
           loading="lazy"
           allowFullScreen
           src={`https://www.google.com/maps/embed/v1/directions?origin=${originOrder}&destination=${address}&key=${process.env.REACT_APP_API_KEY}`}

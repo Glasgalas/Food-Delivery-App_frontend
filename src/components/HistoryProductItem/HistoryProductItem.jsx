@@ -1,4 +1,5 @@
 import { Image, Text, Grid, GridItem } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 const HistoryProductItem = ({ product }) => {
   const { name, price, imageURL } = product;
@@ -24,4 +25,9 @@ const HistoryProductItem = ({ product }) => {
     </Grid>
   );
 };
+
+HistoryProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
 export default HistoryProductItem;

@@ -1,5 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import CartProductItem from '../CartProductItem';
+import PropTypes from 'prop-types';
 
 const CartProductList = ({ products }) => {
   return (
@@ -16,4 +17,9 @@ const CartProductList = ({ products }) => {
     </ul>
   );
 };
+
+CartProductList.propTypes = {
+  products: PropTypes.array.isRequired,
+};
+
 export default CartProductList;

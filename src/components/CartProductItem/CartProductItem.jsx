@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Flex,
   Image,
-  Button,
-  Tooltip,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -13,12 +11,12 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import { Div, Wrap } from './CartProductItem.styled';
 import {
   addToCart,
   decrementCart,
   deleteFromCart,
 } from '../../redux/cartSlice';
+import PropTypes from 'prop-types';
 
 const CartProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -42,9 +40,19 @@ const CartProductItem = ({ product }) => {
     const item = cartItems.find(el => el._id === product._id);
     return item.cartQuantity;
   };
+
   const quantityProduct = getQuantity(product);
+
   return (
-    <Div>
+    <Flex
+      flexDir="row"
+      border="1px"
+      borderRadius="10px"
+      p="10px"
+      _hover={{
+        boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
+      }}
+    >
       <Image
         src={imageURL}
         alt={name}
@@ -53,8 +61,8 @@ const CartProductItem = ({ product }) => {
         marginLeft="auto"
         marginRight="auto"
       />
-      <Wrap>
-        <Flex display="flex" flexDirection="column" alignItems="flex-end">
+      <Flex flexDir="column" justifyContent="space-between">
+        <Flex flexDir="column" alignItems="flex-end">
           <IconButton
             colorScheme="red"
             onClick={() => handleDeleteFromCart(product)}
@@ -84,8 +92,13 @@ const CartProductItem = ({ product }) => {
             </NumberInputStepper>
           </NumberInput>
         </div>
-      </Wrap>
-    </Div>
+      </Flex>
+    </Flex>
   );
 };
+
+CartProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
 export default CartProductItem;

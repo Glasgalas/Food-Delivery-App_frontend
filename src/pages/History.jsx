@@ -4,11 +4,9 @@ import { useGetAllOrdersQuery } from '../redux/formSlice';
 import { useMemo } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { useState } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 
-const useOrders = query => {
-  const searchQuery = query;
-
+const useOrders = searchQuery => {
   const selectFilteredOrders = useMemo(() => {
     return createSelector(
       [response => response.data, (_, searchQuery) => searchQuery],
@@ -46,18 +44,16 @@ const History = () => {
   const handleSearch = value => {
     setQuery(value);
   };
-  const handleSearchQueryOnKey = value => {
-    setQuery(value);
-  };
+
   return (
     <div>
-      <SearchBar search={handleSearch} searchOnKey={handleSearchQueryOnKey} />
+      <SearchBar search={handleSearch} />
       {error ? (
         <>Oh no, there was an error</>
       ) : filteredOrders === null ? null : filteredOrders === undefined ||
         filteredOrders.length === 0 ? (
         <Text fontSize="lg" textAlign="center">
-          No matches found for query "{query}"
+          No matches found for query: {query}
         </Text>
       ) : filteredOrders ? (
         <HistoryList orders={filteredOrders} />

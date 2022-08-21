@@ -1,5 +1,6 @@
-import { Grid, GridItem, Divider } from '@chakra-ui/react';
+import { Grid, GridItem, Text, Divider } from '@chakra-ui/react';
 import HistoryOrderItem from '../HistoryOrderItem';
+import PropTypes from 'prop-types';
 
 const HistoryList = ({ orders }) => {
   return (
@@ -11,6 +12,11 @@ const HistoryList = ({ orders }) => {
         h="70vh"
         overflowX="auto"
       >
+        <Text>Found matches!</Text>
+        <Text>Name: {orders[0].name}</Text>
+        <Text>Email: {orders[0].email}</Text>
+        <Text>Phone: {orders[0].phone}</Text>
+        <Text>Total orders: {orders.length}</Text>
         {orders.map(order => (
           <li key={order._id}>
             <GridItem colSpan={1}>
@@ -23,4 +29,9 @@ const HistoryList = ({ orders }) => {
     </ul>
   );
 };
+
+HistoryList.propTypes = {
+  orders: PropTypes.array.isRequired,
+};
+
 export default HistoryList;

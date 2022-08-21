@@ -23,6 +23,15 @@ import Cart from '../components/Cart';
 import Form from '../components/Form';
 import Map from '../components/Map';
 import { clearForm, useAddOrderMutation } from '../redux/formSlice';
+import {
+  lengthMsg,
+  nameMsg,
+  emailMsg,
+  phoneMsg,
+  addressMsg,
+  successMsg,
+  errorMsg,
+} from '../helpers/toast/messages';
 
 const ShoppingCart = () => {
   const cart = useSelector(state => state.cart);
@@ -67,58 +76,23 @@ const ShoppingCart = () => {
     const { name, email, phone, address, products } = values;
     try {
       if (!products.length) {
-        toast({
-          title: 'Attention!',
-          description: 'You have not selected anything yet.',
-          status: 'warning',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(lengthMsg);
         return;
       }
       if (!name) {
-        toast({
-          title: 'Attention!',
-          description: 'Fill in the name field.',
-          status: 'warning',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(nameMsg);
         return;
       }
       if (!email) {
-        toast({
-          title: 'Attention!',
-          description: 'Fill in the email field.',
-          status: 'warning',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(emailMsg);
         return;
       }
       if (!phone) {
-        toast({
-          title: 'Attention!',
-          description: 'Fill in the phone field.',
-          status: 'warning',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(phoneMsg);
         return;
       }
       if (!address) {
-        toast({
-          title: 'Attention!',
-          description: 'Fill in the address field.',
-          status: 'warning',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(addressMsg);
         return;
       }
 
@@ -127,25 +101,11 @@ const ShoppingCart = () => {
       if (isSuccess) {
         handleClearCart();
         handleResetForm();
-        toast({
-          title: 'Succes!',
-          description: 'The order has been sent to the queue.',
-          status: 'success',
-          duration: 4000,
-          position: 'bottom-right',
-          isClosable: true,
-        });
+        toast(successMsg);
       }
     } catch (error) {
       console.error(error);
-      toast({
-        title: 'Error!',
-        description: 'There are some problems on the server, please try again',
-        status: 'error',
-        duration: 4000,
-        position: 'bottom-right',
-        isClosable: true,
-      });
+      toast(errorMsg);
     }
   };
 
@@ -256,7 +216,7 @@ const ShoppingCart = () => {
         <Modal isOpen={isOpen} onClose={() => onClose()}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Error {data.error.data.status}</ModalHeader>
+            <ModalHeader>Error {data.error.status}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>{data.error.data.message}</ModalBody>
           </ModalContent>

@@ -1,8 +1,9 @@
-import { Image, Button, Tooltip, Text, useToast } from '@chakra-ui/react';
-import { Div, Wrap } from './ProductItem.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { Flex, Image, Button, Tooltip, Text, useToast } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import { getTotals } from '../../redux/cartSlice';
+import { addedToCart } from '../../helpers/toast/messages';
+import PropTypes from 'prop-types';
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -12,18 +13,18 @@ const ProductItem = ({ product }) => {
   const handleAddToCart = product => {
     dispatch(addToCart(product));
     dispatch(getTotals());
-    toast({
-      title: 'Added to cart.',
-      description: 'The product has been added to the cart.',
-      status: 'success',
-      duration: 4000,
-      position: 'bottom-right',
-      isClosable: true,
-    });
+    toast(addedToCart);
   };
 
   return (
-    <Div>
+    <Flex
+      flexDir="column"
+      borderRadius="10px"
+      p="10px"
+      _hover={{
+        boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
+      }}
+    >
       <Image
         src={imageURL}
         alt={name}
@@ -32,7 +33,7 @@ const ProductItem = ({ product }) => {
         marginLeft="auto"
         marginRight="auto"
       />
-      <Wrap>
+      <Flex flexDir="row" justifyContent="space-between">
         <div>
           <Text fontSize="lg">{name}</Text>
           <Text fontSize="lg">{price} ₴</Text>
@@ -51,8 +52,16 @@ const ProductItem = ({ product }) => {
             Add to Cart
           </Button>
         </Tooltip>
-      </Wrap>
-    </Div>
+      </Flex>
+    </Flex>
   );
 };
+
+ProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  imageURL: PropTypes.string.isRequired,
+};
+
 export default ProductItem;
