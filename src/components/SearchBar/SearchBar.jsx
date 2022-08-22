@@ -30,17 +30,20 @@ const SearchBar = ({ search }) => {
 
   return (
     <div>
-      <Flex justifyContent="center" mb="10">
-        <InputGroup w="50vw">
+      <Flex justifyContent="center" mb="10px">
+        <InputGroup w={['90vw', '80vw', '70vw']}>
           <InputLeftAddon>
             <Search2Icon color="gray.300" />
           </InputLeftAddon>
+
           <Input
             placeholder="Enter your email, phone or order number"
+            paddingRight="scrollbar-width"
             onChange={handleChange}
             value={value}
             onKeyPress={handleSearchQueryOnKey}
           />
+
           <Button onClick={handleSearch}>Search</Button>
         </InputGroup>
       </Flex>

@@ -4,7 +4,7 @@ import { useGetAllOrdersQuery } from '../redux/formSlice';
 import { useMemo } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { useState } from 'react';
-import { Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 const useOrders = searchQuery => {
   const selectFilteredOrders = useMemo(() => {
@@ -46,7 +46,7 @@ const History = () => {
   };
 
   return (
-    <div>
+    <Box px={['10px', '15px', '30px']}>
       <SearchBar search={handleSearch} />
       {error ? (
         <>Oh no, there was an error</>
@@ -58,7 +58,7 @@ const History = () => {
       ) : filteredOrders ? (
         <HistoryList orders={filteredOrders} />
       ) : null}
-    </div>
+    </Box>
   );
 };
 

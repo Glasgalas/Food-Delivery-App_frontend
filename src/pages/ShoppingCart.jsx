@@ -111,14 +111,20 @@ const ShoppingCart = () => {
 
   return (
     <Grid
-      templateColumns="repeat(2, 1fr)"
-      gap="5"
-      paddingLeft="10"
-      paddingRight="10"
+      templateColumns={['repeat(1, 1fr)', null, 'repeat(2, 1fr)']}
+      gap={['10px', '20px', '30px']}
+      px={['10px', '20px', '30px']}
+      maxW="100vw"
     >
-      <GridItem border="2px solid black" rowSpan={3} h="80vh" overflowX="auto">
+      {/* MAP */}
+      <GridItem
+        border="2px solid black"
+        rowSpan={3}
+        h={['auto']}
+        overflowX="auto"
+      >
         <Grid>
-          <GridItem overflowX="auto" padding="10" pb="0">
+          <GridItem overflowX="auto" p={['10px', '20px', '30px']} pb="0">
             <Map />
           </GridItem>
           <GridItem overflowX="auto">
@@ -126,11 +132,12 @@ const ShoppingCart = () => {
           </GridItem>
         </Grid>
       </GridItem>
+      {/* CART ITEMS */}
       <GridItem
         border="2px solid black"
         colSpan={1}
         rowSpan={1}
-        h="60vh"
+        h={['auto', null, '60vh']}
         overflowX="auto"
       >
         {cartItems.length ? (
@@ -157,6 +164,7 @@ const ShoppingCart = () => {
           </Box>
         )}
       </GridItem>
+      {/* CART TOTAL */}
       <GridItem
         display="flex"
         flexDirection="column"
@@ -165,19 +173,20 @@ const ShoppingCart = () => {
         colSpan={1}
         rowSpan={1}
       >
-        <Text fontSize="xl">
+        <Text fontSize={['xs', 'sm', 'md']}>
           Total quantity:{' '}
-          <Text fontSize="xl" as="b">
+          <Text fontSize={['sm', 'md', 'lg']} as="b">
             {cartTotalQuantity}
           </Text>
         </Text>
-        <Text fontSize="xl">
+        <Text fontSize={['xs', 'sm', 'md']}>
           Total amount:{' '}
-          <Text fontSize="xl" as="b">
+          <Text fontSize={['sm', 'md', 'lg']} as="b">
             {cartTotalAmount} ₴
           </Text>
         </Text>
       </GridItem>
+      {/* CART BUTTONS */}
       <GridItem
         display="flex"
         flexDir="row"
@@ -189,29 +198,36 @@ const ShoppingCart = () => {
         <Tooltip label="Do you want to clear the form?" hasArrow arrowSize={15}>
           <Button
             colorScheme="yellow"
-            w="40"
-            size="lg"
+            w={['20', '120px', '40']}
+            size={['xs', 'sm', 'md']}
             onClick={handleResetForm}
           >
             Clear form
           </Button>
         </Tooltip>
         <Tooltip label="Do you want to clear the cart?" hasArrow arrowSize={15}>
-          <Button colorScheme="red" w="40" size="lg" onClick={handleClearCart}>
+          <Button
+            colorScheme="red"
+            w={['20', '120px', '40']}
+            size={['xs', 'sm', 'md']}
+            onClick={handleClearCart}
+          >
             Clear cart
           </Button>
         </Tooltip>
         <Tooltip label="Send an order?" hasArrow arrowSize={15}>
           <Button
             colorScheme="green"
-            w="40"
-            size="lg"
+            w={['20', '120px', '40']}
+            size={['xs', 'sm', 'md']}
             onClick={() => handleAddOrder(values)}
           >
             Submit
           </Button>
         </Tooltip>
       </GridItem>
+
+      {/* ERROR */}
       {isError && (
         <Modal isOpen={isOpen} onClose={() => onClose()}>
           <ModalOverlay />

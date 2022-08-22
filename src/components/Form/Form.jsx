@@ -21,7 +21,7 @@ const Form = () => {
   };
 
   return (
-    <FormControl padding="10">
+    <FormControl p={['10px', '20px', '30px']} pt="0">
       <FormLabel htmlFor="name">Name</FormLabel>
       <Input
         id="name"
@@ -40,7 +40,7 @@ const Form = () => {
       />
       <FormLabel htmlFor="phone">Phone number</FormLabel>
       <InputGroup>
-        <InputLeftAddon children="+(38)" />
+        <InputLeftAddon>+(38)</InputLeftAddon>
         <Input
           id="phone"
           value={phone}

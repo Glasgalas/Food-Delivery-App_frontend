@@ -12,8 +12,9 @@ const Btn = ({ name, handleClick, active }) => {
       variant="outline"
       isDisabled={inCart}
       isActive={active === name}
-      w="40"
-      size="lg"
+      w={['20', '100px', '40']}
+      mb={['10px', '20px', null]}
+      size={['xs', 'sm', 'md']}
       value={name}
       onClick={handleClick}
     >

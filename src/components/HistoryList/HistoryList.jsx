@@ -7,16 +7,16 @@ const HistoryList = ({ orders }) => {
     <ul>
       <Grid
         templateColumns="repeat(1, 1fr)"
-        padding="10"
+        padding="10px"
         gap="5"
         h="70vh"
         overflowX="auto"
       >
         <Text>Found matches!</Text>
-        <Text>Name: {orders[0].name}</Text>
-        <Text>Email: {orders[0].email}</Text>
-        <Text>Phone: {orders[0].phone}</Text>
-        <Text>Total orders: {orders.length}</Text>
+        <Text fontSize={['xs', 'sm', 'md']}>Name: {orders[0].name}</Text>
+        <Text fontSize={['xs', 'sm', 'md']}>Email: {orders[0].email}</Text>
+        <Text fontSize={['xs', 'sm', 'md']}>Phone: {orders[0].phone}</Text>
+        <Text fontSize={['xs', 'sm', 'md']}>Total orders: {orders.length}</Text>
         {orders.map(order => (
           <li key={order._id}>
             <GridItem colSpan={1}>

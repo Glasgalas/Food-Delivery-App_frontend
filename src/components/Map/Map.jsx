@@ -22,7 +22,7 @@ const Map = () => {
       ) : (
         <iframe
           width="100%"
-          height="300"
+          height="auto"
           loading="lazy"
           allowFullScreen
           src={`https://www.google.com/maps/embed/v1/place?q=${originDefault}&key=${process.env.REACT_APP_API_KEY}`}

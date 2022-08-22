@@ -8,27 +8,31 @@ const HistoryOrderItem = ({ order }) => {
   return (
     <Grid
       borderRadius="10"
-      padding="10"
+      padding="10px"
       _hover={{
         boxShadow: 'dark-lg',
       }}
     >
-      <Flex justifyContent="space-between">
-        <Text fontSize="lg">
+      <Flex flexDir={['column', 'row']} justifyContent="space-between">
+        <Text fontSize={['xs', 'sm', 'md']}>
           Order number:{' '}
-          <Text fontSize="xl" as="b">
+          <Text fontSize={['sm', 'md', 'lg']} as="b">
             {number}
           </Text>
         </Text>
-        <Text fontSize="lg">
+        <Text fontSize={['xs', 'sm', 'md']}>
           Total Price:{' '}
-          <Text fontSize="xl" as="b">
+          <Text fontSize={['sm', 'md', 'lg']} as="b">
             {cartTotalAmount} ₴
           </Text>
         </Text>
       </Flex>
       <ul>
-        <Grid templateColumns="repeat(2, 1fr)" gap="5" overflowX="auto">
+        <Grid
+          templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)']}
+          gap="5"
+          overflowX="auto"
+        >
           {products.map(product => (
             <li key={product._id}>
               <GridItem padding="10" colSpan={1}>

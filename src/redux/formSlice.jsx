@@ -54,7 +54,7 @@ export const formSlice = createSlice({
       const { name, value } = action.payload;
       state[name] = value;
     },
-    clearForm(state, action) {
+    clearForm(state) {
       state.name = '';
       state.email = '';
       state.phone = '';

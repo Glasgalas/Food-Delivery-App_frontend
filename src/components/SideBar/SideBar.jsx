@@ -22,14 +22,16 @@ const SideBar = () => {
 
   return (
     <Box
-      h="80vh"
+      h="100%"
       borderWidth="1px"
+      p={['5px']}
       borderRadius="lg"
       display="flex"
       flexDir="column"
-      justifyContent="space-around"
+      justifyContent={['flex-start']}
       alignItems="center"
       overflow="hidden"
+      pos="fixed"
     >
       <Btn name={'McTonalts'} handleClick={handleClick} active={isActive} />
       <Btn name={'BurgerQueen'} handleClick={handleClick} active={isActive} />

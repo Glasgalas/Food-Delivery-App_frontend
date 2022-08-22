@@ -56,7 +56,7 @@ const CartProductItem = ({ product }) => {
       <Image
         src={imageURL}
         alt={name}
-        boxSize="200px"
+        boxSize={['150px', '200px', '200px']}
         objectFit="contain"
         marginLeft="auto"
         marginRight="auto"
@@ -64,18 +64,19 @@ const CartProductItem = ({ product }) => {
       <Flex flexDir="column" justifyContent="space-between">
         <Flex flexDir="column" alignItems="flex-end">
           <IconButton
+            size={['xs', 'sm', 'md']}
             colorScheme="red"
             onClick={() => handleDeleteFromCart(product)}
             icon={<CloseIcon />}
           />
         </Flex>
         <div>
-          <Text fontSize="lg">{name}</Text>
-          <Text fontSize="lg">{price} ₴</Text>
+          <Text fontSize={['xs', 'sm', 'md']}>{name}</Text>
+          <Text fontSize={['sm', 'md', 'lg']}>{price} ₴</Text>
         </div>
         <div>
           <NumberInput
-            size="lg"
+            size={['sm', 'md', 'lg']}
             maxW={36}
             min={1}
             color="black"

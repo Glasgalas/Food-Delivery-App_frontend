@@ -37,7 +37,11 @@ const Shop = () => {
   const { filteredProducts, error, isLoading } = useProducts();
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap="10">
+    <Grid
+      templateColumns={['repeat(4, 1fr)', null, 'repeat(5, 1fr)']}
+      gap={['10px', '20px', '30px']}
+      px={['10px', '20px', '30px']}
+    >
       <GridItem colSpan={1}>
         <SideBar />
       </GridItem>
@@ -47,7 +51,7 @@ const Shop = () => {
           <Loader />
         </Flex>
       ) : (
-        <GridItem colSpan={2}>
+        <GridItem colSpan={[3, 3, 4]}>
           <ProductList products={filteredProducts} />
         </GridItem>
       )}

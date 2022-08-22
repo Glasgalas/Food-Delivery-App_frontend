@@ -1,4 +1,12 @@
-import { Flex, Image, Button, Tooltip, Text, useToast } from '@chakra-ui/react';
+import {
+  Flex,
+  Box,
+  Image,
+  Button,
+  Tooltip,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import { getTotals } from '../../redux/cartSlice';
@@ -28,31 +36,38 @@ const ProductItem = ({ product }) => {
       <Image
         src={imageURL}
         alt={name}
-        boxSize="250px"
+        boxSize={['120px', '170px', '200px']}
         objectFit="contain"
         marginLeft="auto"
         marginRight="auto"
       />
-      <Flex flexDir="row" justifyContent="space-between">
+      <Box>
         <div>
-          <Text fontSize="lg">{name}</Text>
-          <Text fontSize="lg">{price} ₴</Text>
+          <Text fontSize={['xs', 'sm', 'md']}>{name}</Text>
         </div>
-        <Tooltip
-          label="This product will be added to the cart"
-          hasArrow
-          arrowSize={15}
-        >
-          <Button
-            colorScheme="cyan"
-            w="40"
-            size="lg"
-            onClick={() => handleAddToCart(product)}
-          >
-            Add to Cart
-          </Button>
-        </Tooltip>
-      </Flex>
+        <Flex flexDir="row" justifyContent="space-between" alignItems="center">
+          <div>
+            <Text fontSize={['sm', 'md', 'lg']}>{price} ₴</Text>
+          </div>
+
+          <div>
+            <Tooltip
+              label="This product will be added to the cart"
+              hasArrow
+              arrowSize={15}
+            >
+              <Button
+                colorScheme="cyan"
+                w={['20', '120px', '40']}
+                size={['xs', 'sm', 'md']}
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to Cart
+              </Button>
+            </Tooltip>
+          </div>
+        </Flex>
+      </Box>
     </Flex>
   );
 };
