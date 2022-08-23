@@ -3,7 +3,7 @@ import Loader from '../components/Loader';
 import ProductList from '../components/ProductList';
 import { Outlet } from 'react-router-dom';
 import { useGetAllProductsQuery } from '../redux/productSlice';
-import { Grid, GridItem, Flex } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
@@ -37,26 +37,27 @@ const Shop = () => {
   const { filteredProducts, error, isLoading } = useProducts();
 
   return (
-    <Grid
-      templateColumns={['repeat(4, 1fr)', null, 'repeat(5, 1fr)']}
-      gap={['10px', '20px', '30px']}
-      px={['10px', '20px', '30px']}
-    >
-      <GridItem colSpan={1}>
-        <SideBar />
-      </GridItem>
+    <>
       {error && <p>Error! Oops...</p>}
       {isLoading ? (
-        <Flex alignItems="center" justifyContent="center">
-          <Loader />
-        </Flex>
+        <Loader />
       ) : (
-        <GridItem colSpan={[3, 3, 4]}>
-          <ProductList products={filteredProducts} />
-        </GridItem>
+        <Grid
+          templateColumns={['repeat(4, 1fr)', null, 'repeat(5, 1fr)']}
+          gap={['10px', '20px', '30px']}
+          px={['10px', '20px', '30px']}
+        >
+          <GridItem colSpan={1}>
+            <SideBar />
+          </GridItem>
+          <GridItem colSpan={[3, 3, 4]}>
+            <ProductList products={filteredProducts} />
+          </GridItem>
+
+          <Outlet />
+        </Grid>
       )}
-      <Outlet />
-    </Grid>
+    </>
   );
 };
 

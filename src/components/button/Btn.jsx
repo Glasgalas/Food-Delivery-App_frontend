@@ -15,6 +15,7 @@ const Btn = ({ name, handleClick, active }) => {
       w={['20', '100px', '40']}
       mb={['10px', '20px', null]}
       size={['xs', 'sm', 'md']}
+      fontSize={['xs', 'sm', 'md']}
       value={name}
       onClick={handleClick}
     >

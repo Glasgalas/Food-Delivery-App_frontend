@@ -1,12 +1,16 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Flex } from '@chakra-ui/react';
 
 const Loader = () => {
-  <Spinner
-    thickness="4px"
-    speed="0.65s"
-    emptyColor="gray.200"
-    color="blue.500"
-    size="xl"
-  />;
+  return (
+    <Flex h="80vh" w="100vw" alignItems="center" justifyContent="center">
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    </Flex>
+  );
 };
 export default Loader;
