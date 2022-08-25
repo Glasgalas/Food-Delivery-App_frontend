@@ -9,6 +9,7 @@ import {
   NumberDecrementStepper,
   IconButton,
   Text,
+  useColorMode,
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import {
@@ -19,6 +20,7 @@ import {
 import PropTypes from 'prop-types';
 
 const CartProductItem = ({ product }) => {
+  const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const { name, price, imageURL } = product;
   const cart = useSelector(state => state.cart);
@@ -49,9 +51,15 @@ const CartProductItem = ({ product }) => {
       border="1px"
       borderRadius="10px"
       p="10px"
-      _hover={{
-        boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
-      }}
+      _hover={
+        colorMode === 'light'
+          ? {
+              boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
+            }
+          : {
+              boxShadow: '5px 5px 15px 5px rgba(228, 209, 2,  0.24)',
+            }
+      }
     >
       <Image
         src={imageURL}
@@ -79,7 +87,7 @@ const CartProductItem = ({ product }) => {
             size={['sm', 'md', 'lg']}
             maxW={36}
             min={1}
-            color="black"
+            color={colorMode === 'light' ? 'black' : 'white'}
             value={quantityProduct}
           >
             <NumberInputField />

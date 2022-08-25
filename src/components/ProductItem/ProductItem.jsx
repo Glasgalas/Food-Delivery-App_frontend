@@ -6,6 +6,7 @@ import {
   Tooltip,
   Text,
   useToast,
+  useColorMode,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
@@ -14,6 +15,7 @@ import { addedToCart } from '../../helpers/toast/messages';
 import PropTypes from 'prop-types';
 
 const ProductItem = ({ product }) => {
+  const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const { name, price, imageURL } = product;
   const toast = useToast();
@@ -29,9 +31,15 @@ const ProductItem = ({ product }) => {
       flexDir="column"
       borderRadius="10px"
       p="10px"
-      _hover={{
-        boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
-      }}
+      _hover={
+        colorMode === 'light'
+          ? {
+              boxShadow: '5px 5px 15px 5px rgba(0, 0, 0, 0.25)',
+            }
+          : {
+              boxShadow: '5px 5px 15px 5px rgba(228, 209, 2,  0.24)',
+            }
+      }
     >
       <Image
         src={imageURL}
