@@ -1,15 +1,24 @@
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { GlobalStyle } from './GlobalStyle';
-import { Box, Flex, Text, Grid, GridItem } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Text,
+  Grid,
+  GridItem,
+  useColorMode,
+} from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import HeaderIcon from '../components/HeaderIcon';
+import MenuBurger from '../components/MenuBurger/MenuBurger';
 
 const ActiveLink = {
   textDecoration: 'underline',
 };
 
 export default function Layout() {
+  const { colorMode } = useColorMode();
   const cart = useSelector(state => state.cart);
   const { cartTotalQuantity } = cart;
 
@@ -21,22 +30,32 @@ export default function Layout() {
         top="0"
         zIndex="9"
         w="100%"
-        bgGradient="linear(to-r, gray.300, yellow.400, pink.200)"
+        bgGradient={
+          colorMode === 'light'
+            ? 'linear(to-r, gray.300, yellow.400, pink.200)'
+            : 'linear(to-r, gray.700, yellow.900, pink.800)'
+        }
         boxShadow="rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;"
       >
         <nav>
           <Grid
-            templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']}
+            templateColumns={['repeat(1, 1fr)', 'repeat(9, 1fr)']}
             justifyItems={['flex-start', 'center']}
             alignItems="center"
             padding="15px"
-            color="blueviolet"
+            color={colorMode === 'light' ? 'blueviolet' : '#ffa51f'}
             fontSize="26px"
             pl={['20px', 0]}
           >
-            <GridItem colSpan={1}>
+            <GridItem colSpan={2}>
               <Flex alignItems="center">
-                <HeaderIcon srcImg={'images/icons/shop.png'} />
+                <HeaderIcon
+                  srcImg={
+                    colorMode === 'light'
+                      ? 'images/icons/shop.png'
+                      : 'images/icons/shop-d.png'
+                  }
+                />
 
                 <NavLink
                   to="/"
@@ -48,9 +67,15 @@ export default function Layout() {
                 </NavLink>
               </Flex>
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={4}>
               <Flex alignItems="center">
-                <HeaderIcon srcImg={'images/icons/cart.png'} />
+                <HeaderIcon
+                  srcImg={
+                    colorMode === 'light'
+                      ? 'images/icons/cart.png'
+                      : 'images/icons/cart-d.png'
+                  }
+                />
                 <NavLink
                   to="cart"
                   style={({ isActive }) => (isActive ? ActiveLink : undefined)}
@@ -76,9 +101,15 @@ export default function Layout() {
                 )}
               </Flex>
             </GridItem>
-            <GridItem colSpan={1}>
+            <GridItem colSpan={2}>
               <Flex alignItems="center">
-                <HeaderIcon srcImg={'images/icons/history.png'} />
+                <HeaderIcon
+                  srcImg={
+                    colorMode === 'light'
+                      ? 'images/icons/history.png'
+                      : 'images/icons/history-d.png'
+                  }
+                />
                 <NavLink
                   to="history"
                   style={({ isActive }) => (isActive ? ActiveLink : undefined)}
@@ -89,6 +120,14 @@ export default function Layout() {
                 </NavLink>
               </Flex>
             </GridItem>
+            <GridItem
+              pos={['absolute', 'static']}
+              top={2}
+              right={5}
+              colSpan={1}
+            >
+              <MenuBurger />
+            </GridItem>
           </Grid>
         </nav>
       </Box>
@@ -98,7 +137,11 @@ export default function Layout() {
         bottom="0"
         w="100%"
         zIndex="9"
-        bgGradient={['linear(to-b, orange.100, purple.300)']}
+        bgGradient={
+          colorMode === 'light'
+            ? 'linear(to-b, orange.100, purple.300)'
+            : 'linear(to-b, orange.800, purple.700)'
+        }
         boxShadow="rgba(0, 0, 0, 0.45) 0px -8px 20px 0px"
         h="30px"
         textAlign="center"
