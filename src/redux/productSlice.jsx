@@ -4,7 +4,7 @@ import { axiosBaseQuery } from './axiosBaseQuery';
 export const productsApi = createApi({
   reducerPath: 'products',
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://gls-food-app.herokuapp.com/api',
+    baseUrl: 'https://food-delivery-app-backend1.vercel.app/api',
   }),
   tagTypes: ['Product'],
   endpoints: builder => ({

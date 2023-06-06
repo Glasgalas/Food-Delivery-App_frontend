@@ -13,6 +13,7 @@ import { addToCart } from '../../redux/cartSlice';
 import { getTotals } from '../../redux/cartSlice';
 import { addedToCart } from '../../helpers/toast/messages';
 import PropTypes from 'prop-types';
+import s from './productItem.module.css';
 
 const ProductItem = ({ product }) => {
   const { colorMode } = useColorMode();
@@ -28,6 +29,7 @@ const ProductItem = ({ product }) => {
 
   return (
     <Flex
+      className={s.box}
       flexDir="column"
       borderRadius="10px"
       p="10px"
@@ -42,6 +44,7 @@ const ProductItem = ({ product }) => {
       }
     >
       <Image
+        className={s.img}
         src={imageURL}
         alt={name}
         boxSize={['120px', '170px', '200px']}
@@ -50,11 +53,11 @@ const ProductItem = ({ product }) => {
         marginRight="auto"
       />
       <Box>
-        <div>
+        <div className={s.txt}>
           <Text fontSize={['xs', 'sm', 'md']}>{name}</Text>
         </div>
         <Flex flexDir="row" justifyContent="space-between" alignItems="center">
-          <div>
+          <div className={s.price}>
             <Text fontSize={['sm', 'md', 'lg']}>{price} ₴</Text>
           </div>
 
@@ -65,6 +68,7 @@ const ProductItem = ({ product }) => {
               arrowSize={15}
             >
               <Button
+                className={s.btn}
                 colorScheme="cyan"
                 w={['20', '120px', '40']}
                 size={['xs', 'sm', 'md']}

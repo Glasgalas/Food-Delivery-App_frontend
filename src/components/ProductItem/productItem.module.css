@@ -1,0 +1,19 @@
+.box:hover .img {
+  transform: translate(-5%, -5%);
+}
+.box:hover .btn {
+  /* transform: translate(-10%, 0%); */
+  transform: translate(5%, 5%);
+}
+.box:hover .txt {
+  transform: scale(1.1) translate(5%, 5%);
+}
+.box:hover .price {
+  transform: translate(50%, 0%);
+}
+.img,
+.btn,
+.txt,
+.price {
+  transition: all 0.4s ease-in-out 0s;
+}
